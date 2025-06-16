@@ -62,10 +62,21 @@ pip install -r requirements.txt
 2. 환경 변수 설정
    `.env.example` 파일을 `.env`로 복사한 후, API 키 등을 입력합니다.
 
-3. Streamlit 실행
+3. Streamlit 실행 시 PYTHONPATH 환경변수 지정 (모듈 import 오류 방지)
 
+**Windows (CMD):**
 ```bash
+set PYTHONPATH=.
 streamlit run app/main.py
+```
+**Windows (PowerShell):**
+```bash
+$env:PYTHONPATH="."
+streamlit run app/main.py
+```
+**macOS/Linux:**
+```bash
+PYTHONPATH=. streamlit run app/main.py
 ```
 
 ---
