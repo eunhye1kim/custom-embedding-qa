@@ -57,19 +57,53 @@ custom-embedding-qa/
 
 ## 🚀 Getting Started
 
-1. Install dependencies
+1. (Optional) Create and activate a virtual environment
+
+**Windows (CMD):**
+```bash
+python -m venv env
+env\Scripts\activate
+```
+**Windows (PowerShell):**
+```bash
+python -m venv env
+.\env\Scripts\Activate.ps1
+```
+**macOS/Linux:**
+```bash
+python3 -m venv env
+source env/bin/activate
+```
+
+2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Set environment variables
+3. Set environment variables
    Copy `.env.example` to `.env` and fill in API keys
 
-3. Run Streamlit app
+4. Run Streamlit app (set PYTHONPATH for module import)
 
+**Windows (CMD):**
 ```bash
+set PYTHONPATH=.
 streamlit run app/main.py
+```
+**Windows (PowerShell):**
+```bash
+$env:PYTHONPATH="."
+streamlit run app/main.py
+```
+**macOS/Linux:**
+```bash
+PYTHONPATH=. streamlit run app/main.py
+```
+
+5. (Optional) Deactivate virtual environment
+```bash
+deactivate
 ```
 
 ---
