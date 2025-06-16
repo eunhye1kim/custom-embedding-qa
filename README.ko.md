@@ -53,16 +53,34 @@ custom-embedding-qa/
 
 ## 🚀 실행 방법
 
-1. 패키지 설치
+1. (Optional) Create and activate a virtual environment
+
+**Windows (CMD):**
+```bash
+python -m venv env
+env\Scripts\activate
+```
+**Windows (PowerShell):**
+```bash
+python -m venv env
+.\env\Scripts\Activate.ps1
+```
+**macOS/Linux:**
+```bash
+python3 -m venv env
+source env/bin/activate
+```
+
+2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-2. 환경 변수 설정
-   `.env.example` 파일을 `.env`로 복사한 후, API 키 등을 입력합니다.
+3. Set environment variables
+   Copy `.env.example` to `.env` and fill in API keys
 
-3. Streamlit 실행 시 PYTHONPATH 환경변수 지정 (모듈 import 오류 방지)
+4. Run Streamlit app (set PYTHONPATH for module import)
 
 **Windows (CMD):**
 ```bash
@@ -77,6 +95,11 @@ streamlit run app/main.py
 **macOS/Linux:**
 ```bash
 PYTHONPATH=. streamlit run app/main.py
+```
+
+5. (Optional) Deactivate virtual environment
+```bash
+deactivate
 ```
 
 ---
