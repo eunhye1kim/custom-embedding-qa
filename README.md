@@ -49,8 +49,9 @@ custom-embedding-qa/
 ├── finetune/        # Model fine-tuning & serving
 ├── config/          # Configuration
 ├── requirements.txt
-├── README.en.md     # English version
+├── README.md        # English version
 └── README.ko.md     # Korean version
+
 ```
 
 ---
@@ -113,5 +114,4 @@ deactivate
 Eunhye Kim
 Machine Learning Engineer / AI System Builder
 Objective: Prototyping custom-embedding RAG architecture for portfolio use
-
 
