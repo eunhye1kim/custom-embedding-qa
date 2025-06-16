@@ -45,7 +45,7 @@ custom-embedding-qa/
 ├── finetune/        # 모델 파인튜닝 및 서빙 코드
 ├── config/          # 설정 파일
 ├── requirements.txt
-├── README.md        # 영어 버전
+├── README.en.md     # 영어 버전
 └── README.ko.md     # 한국어 버전
 ```
 
@@ -53,34 +53,16 @@ custom-embedding-qa/
 
 ## 🚀 실행 방법
 
-1. (선택) Python 가상환경(virtualenv) 생성 및 활성화
-
-**Windows (CMD):**
-```bash
-python -m venv env
-env\Scripts\activate
-```
-**Windows (PowerShell):**
-```bash
-python -m venv env
-.\env\Scripts\Activate.ps1
-```
-**macOS/Linux:**
-```bash
-python3 -m venv env
-source env/bin/activate
-```
-
-2. 패키지 설치
+1. 패키지 설치
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. 환경 변수 설정
+2. 환경 변수 설정
    `.env.example` 파일을 `.env`로 복사한 후, API 키 등을 입력합니다.
 
-4. Streamlit 실행 시 PYTHONPATH 환경변수 지정 (모듈 import 오류 방지)
+3. Streamlit 실행 시 PYTHONPATH 환경변수 지정 (모듈 import 오류 방지)
 
 **Windows (CMD):**
 ```bash
@@ -95,11 +77,6 @@ streamlit run app/main.py
 **macOS/Linux:**
 ```bash
 PYTHONPATH=. streamlit run app/main.py
-```
-
-5. (선택) 가상환경 비활성화
-```bash
-deactivate
 ```
 
 ---
