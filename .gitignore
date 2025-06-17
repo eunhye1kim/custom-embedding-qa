@@ -20,3 +20,6 @@ __pycache__/
 
 # Qdrant/Chroma/FAISS vector store
 /data/vector_store/ 
+
+# Python cache
+/backend/__pycache__/

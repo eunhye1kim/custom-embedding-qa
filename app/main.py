@@ -1,20 +1,32 @@
 import streamlit as st
 import os
+from dotenv import load_dotenv
 from backend.retriever_openai import OpenAIRetriever
+from backend.retriever_sbert import SBERTRetriever
 from backend.rag_chain import SimpleRAGChain
+
+load_dotenv()
 
 st.set_page_config(page_title="Custom Embedding RAG QA", layout="wide")
 st.title("🔎 Custom Embedding 기반 RAG 챗봇")
 
-# API 키 입력
-openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
+# 임베딩 모델 선택
+model_option = st.sidebar.selectbox("임베딩 모델 선택", ["OpenAI", "SBERT"])
 
-if not openai_api_key:
-    st.warning("좌측 사이드바에 OpenAI API Key를 입력하세요.")
-    st.stop()
+openai_api_key = os.environ.get("OPENAI_API_KEY", "")
 
-retriever = OpenAIRetriever(openai_api_key)
-rag_chain = SimpleRAGChain(openai_api_key)
+if model_option == "OpenAI":
+    if not openai_api_key:
+        st.warning("OPENAI_API_KEY 환경변수를 설정하세요.")
+        st.stop()
+    retriever = OpenAIRetriever(openai_api_key)
+    rag_chain = SimpleRAGChain(openai_api_key)
+elif model_option == "SBERT":
+    if not openai_api_key:
+        st.warning("OPENAI_API_KEY 환경변수를 설정하세요.")
+        st.stop()
+    retriever = SBERTRetriever()
+    rag_chain = SimpleRAGChain(openai_api_key)  # 답변 생성은 여전히 OpenAI GPT 사용
 
 # 문서 인덱싱 버튼
 if st.sidebar.button("문서 임베딩/인덱싱 갱신"):
