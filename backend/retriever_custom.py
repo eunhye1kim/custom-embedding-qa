@@ -4,13 +4,17 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import PointStruct, Distance, VectorParams
 from sentence_transformers import SentenceTransformer
 
+# 경로 설정
 DOCUMENTS_PATH = os.path.join(os.path.dirname(__file__), '../data/documents')
 VECTOR_STORE_PATH = os.path.join(os.path.dirname(__file__), '../data/vector_store')
-COLLECTION_NAME = 'docs_sbert'
+COLLECTION_NAME = 'docs_custom_embedding'
 
-class SBERTRetriever:
-    def __init__(self, model_name: str = "snunlp/KR-SBERT-V40K-klueNLI-augSTS", qdrant_url: str = None):
+class CustomEmbeddingRetriever:
+    def __init__(self, model_name: str = "lunara-kim/custom-embedding-qa", qdrant_url: str = None):
+        # SentenceTransformer로 모델 로딩
         self.model = SentenceTransformer(model_name)
+        
+        # Qdrant 연결 (로컬 파일 기반)
         self.client = QdrantClient(path=VECTOR_STORE_PATH)
         self._init_collection()
 

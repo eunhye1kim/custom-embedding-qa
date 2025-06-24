@@ -46,4 +46,8 @@ class OpenAIRetriever:
             query_vector=query_vec,
             limit=top_k
         )
-        return [hit.payload for hit in hits] 
+        return [hit.payload for hit in hits]
+
+    def close(self):
+        # Local QdrantClient에는 명시적 close 메서드는 없지만, 참조 제거 유도
+        del self.client
