@@ -3,9 +3,9 @@
 > Semantic QA system powered by custom embeddings
 > Includes OpenAI / HuggingFace embedding experiments and fine-tuning
 
-## 📘 Other Languages
+## 📚 Other Languages
 
-📘 [Korean README](README.ko.md)
+📚 [Korean README](README.ko.md)
 
 ---
 
@@ -17,23 +17,24 @@ It integrates Streamlit for UI and uses LangChain, Qdrant, and various embedding
 
 ---
 
-## 🤩 Features
+## 🚀 Features
 
-* QA system using OpenAI embeddings
-* Support for HuggingFace models (BGE, MiniCoIL, etc.)
-* Streamlit-based chatbot interface
-* Embedding model fine-tuning and serving
+* QA system using OpenAI, SBERT, miniCOIL, and Custom embedding models
+* Streamlit-based chatbot interface (app/main.py)
+* Sidebar model selection (OpenAI, SBERT, miniCOIL, Custom)
+* On-demand document embedding/indexing
+* Embedding model fine-tuning and serving (finetune/)
 * Retrieval performance comparison (NDCG, qualitative eval)
 
 ---
 
-## 💪 Tech Stack
+## 💻 Tech Stack
 
 | Category         | Tools                           |
 | ---------------- | ------------------------------- |
 | Language         | Python                          |
 | Frameworks       | LangChain, Streamlit            |
-| Embedding Models | OpenAI, MiniCoIL, SBERT         |
+| Embedding Models | OpenAI, MiniCoIL, SBERT, Custom |
 | Vector DB        | Qdrant                          |
 | Dev Env          | Colab, VSCode, Jupyter Notebook |
 
@@ -43,19 +44,19 @@ It integrates Streamlit for UI and uses LangChain, Qdrant, and various embedding
 
 ```
 custom-embedding-qa/
-├── app/             # Streamlit UI
-├── backend/         # Embedding & search logic
+├── app/             # Streamlit UI (main.py)
+├── backend/         # Embedding & search logic (retrievers, RAG chain)
 ├── data/            # Document corpus & vector DB
 ├── finetune/        # Model fine-tuning & serving
 ├── config/          # Configuration
 ├── requirements.txt
-├── README.md     # English version
+├── README.md        # English version
 └── README.ko.md     # Korean version
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🚦 Getting Started
 
 1. (Optional) Create and activate a virtual environment
 
@@ -82,7 +83,7 @@ pip install -r requirements.txt
 ```
 
 3. Set environment variables
-   Copy `.env.example` to `.env` and fill in API keys
+   Create a `.env` file in the root directory and add your API keys (e.g., `OPENAI_API_KEY=...`)
 
 4. Run Streamlit app (set PYTHONPATH for module import)
 
@@ -105,6 +106,16 @@ PYTHONPATH=. streamlit run app/main.py
 ```bash
 deactivate
 ```
+
+---
+
+## 🧩 How it works
+
+- **Model selection:** Choose embedding model (OpenAI, SBERT, miniCOIL, Custom) from sidebar
+- **Document indexing:** Update embeddings/index with sidebar button
+- **Chatbot UI:** Enter questions, get answers, and view retrieved documents
+- **Backend:** Modular retrievers and RAG chain in backend/
+- **Fine-tuning:** Scripts and data for custom model training in finetune/
 
 ---
 
