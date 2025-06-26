@@ -4,17 +4,13 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import PointStruct, Distance, VectorParams
 from sentence_transformers import SentenceTransformer
 
-# 경로 설정
 DOCUMENTS_PATH = os.path.join(os.path.dirname(__file__), '../data/documents')
 VECTOR_STORE_PATH = os.path.join(os.path.dirname(__file__), '../data/vector_store')
-COLLECTION_NAME = 'docs_custom_embedding'
+COLLECTION_NAME = 'docs_bert_multilingual'
 
-class CustomEmbeddingRetriever:
-    def __init__(self, model_name: str = "lunara-kim/custom-embedding-qa", qdrant_url: str = None):
-        # SentenceTransformer로 모델 로딩
+class BertMultilingualRetriever:
+    def __init__(self, model_name: str = "bert-base-multilingual-cased", qdrant_url: str = None):
         self.model = SentenceTransformer(model_name)
-        
-        # Qdrant 연결 (로컬 파일 기반)
         self.client = QdrantClient(path=VECTOR_STORE_PATH)
         self._init_collection()
 
@@ -30,22 +26,14 @@ class CustomEmbeddingRetriever:
 
     def index_documents(self):
         doc_files = [f for f in os.listdir(DOCUMENTS_PATH) if f.endswith('.txt')]
-        print(f"[CustomEmbeddingRetriever] 문서 파일 목록: {doc_files}")
         points = []
         for idx, fname in enumerate(doc_files):
             with open(os.path.join(DOCUMENTS_PATH, fname), 'r', encoding='utf-8') as f:
                 content = f.read()
             embedding = self.embed_text(content)
-            print(f"[CustomEmbeddingRetriever] {fname} 임베딩 shape: {len(embedding)}")
             points.append(PointStruct(id=idx, vector=embedding, payload={"filename": fname, "content": content}))
-        print(f"[CustomEmbeddingRetriever] 업로드할 point 개수: {len(points)}")
         if points:
             self.client.upsert(collection_name=COLLECTION_NAME, points=points)
-            # 업로드 후 컬렉션 내 point 개수 확인
-            count = self.client.count(collection_name=COLLECTION_NAME, exact=True).count
-            print(f"[CustomEmbeddingRetriever] 업로드 후 컬렉션 내 point 개수: {count}")
-        else:
-            print("[CustomEmbeddingRetriever] 업로드할 point가 없습니다.")
 
     def search(self, query: str, top_k: int = 3):
         query_vec = self.embed_text(query)
@@ -57,5 +45,4 @@ class CustomEmbeddingRetriever:
         return [hit.payload for hit in hits]
 
     def close(self):
-        # Local QdrantClient에는 명시적 close 메서드는 없지만, 참조 제거 유도
-        del self.client
+        del self.client 
