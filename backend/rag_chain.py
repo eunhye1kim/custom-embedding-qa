@@ -16,4 +16,5 @@ class SimpleRAGChain:
             temperature=0.2,
             max_tokens=512
         )
+        print(response.choices[0].message.content.strip())
         return response.choices[0].message.content.strip() 

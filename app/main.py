@@ -1,11 +1,10 @@
 import streamlit as st
 import os
 from dotenv import load_dotenv
-from backend.retriever_openai import OpenAIRetriever
-from backend.retriever_sbert import SBERTRetriever
-from backend.retriever_minicoil import MiniCOILRetriever
 from backend.retriever_custom import CustomEmbeddingRetriever
 from backend.rag_chain import SimpleRAGChain
+from backend.retriever_bert_multilingual import BertMultilingualRetriever
+from backend.retriever_custom_v1 import RetrieverCustomV1
 
 load_dotenv()
 
@@ -20,12 +19,11 @@ if 'rag_chain' not in st.session_state:
 if 'model_initialized' not in st.session_state:
     st.session_state.model_initialized = False
 
-# 임베딩 모델 선택 옵션에 Custom 추가
-model_option = st.sidebar.selectbox("임베딩 모델 선택", ["OpenAI", "SBERT", "miniCOIL", "Custom"])
+# 임베딩 모델 선택 옵션에 Custom, BERT Multilingual, Jina Embedding v3, Custom Embedding QA v1 추가
+model_option = st.sidebar.selectbox("임베딩 모델 선택", ["BERT Multilingual", "Custom", "Custom Embedding QA v1"])
 
 openai_api_key = os.environ.get("OPENAI_API_KEY", "")
 
-# 모델 변경 시 초기화
 # 모델 변경 시 초기화
 if 'previous_model' not in st.session_state or st.session_state.previous_model != model_option:
     # 기존 retriever 안전하게 종료
@@ -39,44 +37,32 @@ if 'previous_model' not in st.session_state or st.session_state.previous_model !
     st.session_state.previous_model = model_option
 
 # 모델별 초기화
-if model_option == "OpenAI":
+if model_option == "Custom":  # ✅ 새 모델용 분기
     if not openai_api_key:
         st.warning("OPENAI_API_KEY 환경변수를 설정하세요.")
         st.stop()
     if not st.session_state.model_initialized:
-        st.session_state.retriever = OpenAIRetriever(openai_api_key)
+        st.session_state.retriever = CustomEmbeddingRetriever()
         st.session_state.rag_chain = SimpleRAGChain(openai_api_key)
         st.session_state.model_initialized = True
 
-elif model_option == "SBERT":
+elif model_option == "BERT Multilingual":
     if not openai_api_key:
         st.warning("OPENAI_API_KEY 환경변수를 설정하세요.")
         st.stop()
     if not st.session_state.model_initialized:
-        st.session_state.retriever = SBERTRetriever()
+        st.session_state.retriever = BertMultilingualRetriever()
         st.session_state.rag_chain = SimpleRAGChain(openai_api_key)
         st.session_state.model_initialized = True
 
-elif model_option == "miniCOIL":
-    if not st.session_state.model_initialized:
-        st.info("miniCOIL 모델을 사용하려면 아래 '모델 초기화' 버튼을 클릭하세요.")
-        if st.button("모델 초기화"):
-            with st.spinner("miniCOIL 모델을 초기화하는 중..."):
-                st.session_state.retriever = MiniCOILRetriever()
-                st.session_state.rag_chain = SimpleRAGChain(openai_api_key)
-                st.session_state.model_initialized = True
-            st.success("모델 초기화가 완료되었습니다!")
-
-elif model_option == "Custom":  # ✅ 새 모델용 분기
+elif model_option == "Custom Embedding QA v1":
     if not openai_api_key:
         st.warning("OPENAI_API_KEY 환경변수를 설정하세요.")
         st.stop()
     if not st.session_state.model_initialized:
-        with st.spinner("Custom 임베딩 모델 초기화 중..."):
-            st.session_state.retriever = CustomEmbeddingRetriever()
-            st.session_state.rag_chain = SimpleRAGChain(openai_api_key)
-            st.session_state.model_initialized = True
-        st.success("Custom 임베딩 모델이 초기화되었습니다!")
+        st.session_state.retriever = RetrieverCustomV1()
+        st.session_state.rag_chain = SimpleRAGChain(openai_api_key)
+        st.session_state.model_initialized = True
 
 # 문서 인덱싱 버튼
 if st.session_state.model_initialized and st.sidebar.button("문서 임베딩/인덱싱 갱신"):

@@ -21,5 +21,8 @@ __pycache__/
 # Qdrant/Chroma/FAISS vector store
 /data/vector_store/ 
 
+# Text data for RAG Test
+/data/documents/
+
 # Python cache
 /backend/__pycache__/
