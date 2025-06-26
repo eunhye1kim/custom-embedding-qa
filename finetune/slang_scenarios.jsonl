@@ -1,0 +1,20 @@
+{"query": "고객: 티켓 리이슈 가능?", "positive_context": "상담사: 네, 고객님. 리이슈—즉 항공권 재발행 도와드릴 수 있습니다. 날짜나 시간이 변경되시면 도와드릴게요.", "meta": {"consulting_category": "항공권 변경", "source_id": 90901}}
+{"query": "고객: 루프탑 룸 뭐지?", "positive_context": "상담사: 루프탑 룸은 옥상층에 있는 객실/휴게 공간이 있는 숙소 타입입니다. 디럭스 급으로 전망 좋습니다.", "meta": {"consulting_category": "숙소 문의", "source_id": 90902}}
+{"query": "고객: TS 몇 시 돼?", "positive_context": "상담사: TS 부서 상담은 평일 오전 9시부터 오후 6시까지 가능합니다.", "meta": {"consulting_category": "콜센터 시간", "source_id": 90903}}
+{"query": "고객: PNR 조회됨?", "positive_context": "상담사: 네, PNR(예약기록) 조회되었습니다. 탑승자 성함, 일정 확인 가능하세요.", "meta": {"consulting_category": "예약 조회", "source_id": 90904}}
+{"query": "고객: RTW 티켓 어때?", "positive_context": "상담사: RTW 티켓은 세계일주권입니다. 여정 계획에 따라 여러 도시 방문 가능해요.", "meta": {"consulting_category": "티켓 유형", "source_id": 90905}}
+{"query": "고객: CPT 어드온 있나요?", "positive_context": "상담사: CPT는 캐리어 추가 옵션입니다. 유료로 추가하실 수 있습니다.", "meta": {"consulting_category": "수하물 옵션", "source_id": 90906}}
+{"query": "고객: FOC 가능해?", "positive_context": "상담사: FOC는 무료 추가 서비스입니다. 고객 등급에 따라 제공 여부 확인 가능합니다.", "meta": {"consulting_category": "서비스 등급", "source_id": 90907}}
+{"query": "고객: DNR 가능해?", "positive_context": "상담사: DNR은 Do Not Rebook 옵션으로, 취소 시 자동 재발권 방지 옵션입니다.", "meta": {"consulting_category": "예약 옵션", "source_id": 90908}}
+{"query": "고객: UPG 가능?", "positive_context": "상담사: UPG는 업그레이드 요청입니다. 좌석 상황 확인 후 가능 여부 안내드릴게요.", "meta": {"consulting_category": "좌석 업그레이드", "source_id": 90909}}
+{"query": "고객: FF 마일 붙어?", "positive_context": "상담사: FF는 Frequent Flyer. 탑승 후 마일리지 적립됩니다. 회원 번호 알려주시면 처리하겠습니다.", "meta": {"consulting_category": "마일리지", "source_id": 90910}}
+{"query": "고객: PAX 수?", "positive_context": "상담사: PAX는 승객 수 표현입니다. 몇 분이신가요?", "meta": {"consulting_category": "인원 안내", "source_id": 90911}}
+{"query": "고객: ETA 언제?", "positive_context": "상담사: ETA는 도착 예정 시간입니다. 현재 비행기는 오후 4시 20분 도착 예정입니다.", "meta": {"consulting_category": "도착 예정", "source_id": 90912}}
+{"query": "고객: ETD 언제야?", "positive_context": "상담사: ETD는 출발 예정 시간입니다. 오전 10시 30분 출발 예정입니다.", "meta": {"consulting_category": "출발 예정", "source_id": 90913}}
+{"query": "고객: NCF 내야해?", "positive_context": "상담사: NCF는 National Carrier Fee로 국가별 추가요금입니다. 요금표 참고해 주세요.", "meta": {"consulting_category": "추가 요금", "source_id": 90914}}
+{"query": "고객: BAG 얼마나 붙어?", "positive_context": "상담사: BAG는 수하물 비용입니다. 일반 20kg 기준입니다.", "meta": {"consulting_category": "수하물 요금", "source_id": 90915}}
+{"query": "고객: DLY 수수료는?", "positive_context": "상담사: DLY는 지연 수수료입니다. 3시간 이상 지연 시 청구됩니다.", "meta": {"consulting_category": "지연 수수료", "source_id": 90916}}
+{"query": "고객: TKP 되나요?", "positive_context": "상담사: TKP는 탑승권 프린트입니다. 이메일로 PDF 보내드릴게요.", "meta": {"consulting_category": "탑승권 발급", "source_id": 90917}}
+{"query": "고객: CHD 요금?", "positive_context": "상담사: CHD는 어린이 요금입니다. 만 2세~12세 기준 적용됩니다.", "meta": {"consulting_category": "요금 분류", "source_id": 90918}}
+{"query": "고객: SEAT 애드온?", "positive_context": "상담사: SEAT 애드온은 좌석 예약 옵션입니다. 위치별 가격 다릅니다.", "meta": {"consulting_category": "좌석 옵션", "source_id": 90919}}
+{"query": "고객: CHKL 가능?", "positive_context": "상담사: CHKL는 자동 체크인입니다. 출발 24시간 전 활성화됩니다.", "meta": {"consulting_category": "체크인", "source_id": 90920}}
